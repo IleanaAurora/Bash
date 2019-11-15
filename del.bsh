@@ -1,0 +1,15 @@
+if [ $1 == "-d" ]; then
+	if [ ! -d .trash ]; then
+		echo Trashcan empty	
+	elif [ -d .trash ]; then
+		`rm -r .trash`
+	fi
+fi
+if [ $1 != "-d" ]; then
+	if [ ! -d .trash ]; then
+		m=`mkdir .trash`
+	fi	
+	for f in $*; do
+		`mv $f .trash`
+	done
+fi

@@ -1,0 +1,14 @@
+if [ $# -eq 0 ]; then
+	echo Please enter the name of a directory.
+elif [ -d $1 ]; then
+	a=`cd ~/CS/$1 | find . -name 'f????.a' -print`
+	for f in $a; do
+		r=`mv $f ${f%.*}_a.img`
+	done
+	b=`cd ~/CS/$1 | find . -name 'f????.b' -print`
+	for f in $b; do
+		r=`mv $f ${f%.*}_b.img`
+	done
+elif [ ! -d $1 ]; then
+	echo $1 is not a directory.
+fi

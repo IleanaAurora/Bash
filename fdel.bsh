@@ -1,0 +1,15 @@
+if [ $# -eq 1 ]; then
+	declare -i b=0
+	g=`grep -ld skip $1 *`
+	for i in $g; do
+		echo The file\(s\) to be deleted are $i
+		set -- `ls -l $i`
+		b=`expr $b + $5`
+	done
+	for i in $g; do
+		`rm -i $i` && echo $i deleted.
+	done
+	echo $b bytes were deleted in total.
+else
+	echo No string indicated.
+fi
